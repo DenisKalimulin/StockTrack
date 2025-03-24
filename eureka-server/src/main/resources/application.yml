@@ -1,0 +1,13 @@
+server:
+  port: 8761  # порт, на котором будет работать Eureka
+
+spring:
+  application:
+    name: eureka-server  # имя сервиса, по которому он регистрируется в Eureka
+
+eureka:
+  client:
+    register-with-eureka: false  # сам себя не регистрирует
+    fetch-registry: false        # не запрашивает список других сервисов
+  server:
+    wait-time-in-ms-when-sync-empty: 0  # ускоренный старт сервера
