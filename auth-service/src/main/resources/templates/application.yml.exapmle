@@ -1,0 +1,26 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: auth-service
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/auth_service_db
+    username: your_db_username
+    password: your_db_password
+    driver-class-name: org.postgresql.Driver
+
+  sql:
+    init:
+      mode: always
+      platform: postgres
+
+jwt:
+  secret: your_jwt_secret_here
+  expiration: 900000
+
+logging:
+  level:
+    root: info
+    ru.stockstrack: info
