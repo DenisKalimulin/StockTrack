@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.stockstrack.authservice.model.User;
+import ru.stockstrack.authservice.models.User;
 import ru.stockstrack.authservice.repository.UserRepository;
 import ru.stockstrack.authservice.security.CustomUserDetails;
 

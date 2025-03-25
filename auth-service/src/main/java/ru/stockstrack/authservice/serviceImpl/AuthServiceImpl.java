@@ -16,9 +16,8 @@ import ru.stockstrack.authservice.DTO.UserResponseDTO;
 import ru.stockstrack.authservice.config.JwtTokenProvider;
 import ru.stockstrack.authservice.exception.InvalidEmailOrPasswordException;
 import ru.stockstrack.authservice.exception.UserAlreadyExistsException;
-import ru.stockstrack.authservice.exception.UserNotFoundException;
 import ru.stockstrack.authservice.mappers.UserMapper;
-import ru.stockstrack.authservice.model.User;
+import ru.stockstrack.authservice.models.User;
 import ru.stockstrack.authservice.repository.UserRepository;
 import ru.stockstrack.authservice.service.AuthService;
 

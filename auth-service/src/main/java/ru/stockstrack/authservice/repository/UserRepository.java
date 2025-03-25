@@ -1,7 +1,7 @@
 package ru.stockstrack.authservice.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import ru.stockstrack.authservice.model.User;
+import ru.stockstrack.authservice.models.User;
 
 import java.util.Optional;
 import java.util.UUID;

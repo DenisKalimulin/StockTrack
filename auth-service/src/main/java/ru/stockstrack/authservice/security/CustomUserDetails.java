@@ -3,7 +3,7 @@ package ru.stockstrack.authservice.security;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import ru.stockstrack.authservice.model.User;
+import ru.stockstrack.authservice.models.User;
 
 import java.util.Collection;
 import java.util.Collections;

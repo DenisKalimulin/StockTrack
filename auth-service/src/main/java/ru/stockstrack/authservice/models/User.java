@@ -1,4 +1,4 @@
-package ru.stockstrack.authservice.model;
+package ru.stockstrack.authservice.models;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

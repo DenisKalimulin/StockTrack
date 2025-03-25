@@ -11,7 +11,7 @@ import ru.stockstrack.authservice.DTO.UserUpdateDTO;
 import ru.stockstrack.authservice.exception.UserAlreadyExistsException;
 import ru.stockstrack.authservice.exception.UserNotFoundException;
 import ru.stockstrack.authservice.mappers.UserMapper;
-import ru.stockstrack.authservice.model.User;
+import ru.stockstrack.authservice.models.User;
 import ru.stockstrack.authservice.repository.UserRepository;
 import ru.stockstrack.authservice.security.SecurityUtils;
 import ru.stockstrack.authservice.service.UserService;
@@ -33,12 +33,28 @@ public class UserServiceImpl implements UserService {
 
         User user = findUserByLogin(userLogin);
 
+        // Преобразование логина и email в нижний регистр перед обновлением
+        if (userUpdateDTO.getLogin() != null) {
+            userUpdateDTO.setLogin(userUpdateDTO.getLogin().toLowerCase());
+        }
+        if (userUpdateDTO.getEmail() != null) {
+            userUpdateDTO.setEmail(userUpdateDTO.getEmail().toLowerCase());
+        }
+
         checkUserUniqueness(userUpdateDTO.getLogin(), userUpdateDTO.getEmail());
 
         // Обновляем только непустые поля
         userMapper.updateUserFromDto(userUpdateDTO, user);
         if(userUpdateDTO.getPassword() != null) {
             user.setPassword(passwordEncoder.encode(userUpdateDTO.getPassword()));
+        }
+
+        // Приводим логин и email в нижний регистр перед сохранением
+        if (user.getLogin() != null) {
+            user.setLogin(user.getLogin().toLowerCase());
+        }
+        if (user.getEmail() != null) {
+            user.setEmail(user.getEmail().toLowerCase());
         }
 
         User savedUser = userRepository.save(user);
@@ -77,12 +93,16 @@ public class UserServiceImpl implements UserService {
      * @throws UserNotFoundException если пользователь с таким логином не найден.
      */
     private User findUserByLogin(String login) {
+        if (login == null) {
+            throw new UserNotFoundException("Пользователь не найден");
+        }
         return userRepository.findByLogin(login.toLowerCase())
                 .orElseThrow(() -> {
                     logger.warn("Пользователь не найден");
                     return new UserNotFoundException("Пользователь с таким логином " + login + " не найден");
                 });
     }
+
 
     /**
      * Проверка уникальности логина и email.
